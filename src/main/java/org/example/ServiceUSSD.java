@@ -64,6 +64,8 @@ public class ServiceUSSD {
     }
 
     // Méthode principale de gestion des interactions utilisateur (CORRIGÉE)
+    // Dans ServiceUSSD.java, modifier traiterChoixUtilisateur
+    // Dans ServiceUSSD.java, modifier traiterChoixUtilisateur
     private void traiterChoixUtilisateur() {
         String choix = scanner.nextLine();
 
@@ -92,9 +94,18 @@ public class ServiceUSSD {
                 if (menuCourant.isEstMenuPrincipal()) {
                     switch (action) {
                         case "NAV_MENU":
-                            // Navigation vers un sous-menu (Internet, Voix ou CRUD)
                             int targetId = Integer.parseInt(optionChoisie.getDureeValidite());
-                            setMenuCourant(menus.get(targetId));
+
+                            // *** CORRECTION CLÉ : Gérer immédiatement l'affichage dynamique / l'achat ***
+                            if (targetId == 201) {
+                                afficherSousMenuDynamique("INTERNET");
+                                setMenuCourant(menus.get(100)); // Retourne au principal après la sélection/l'annulation
+                            } else if (targetId == 202) {
+                                afficherSousMenuDynamique("VOIX");
+                                setMenuCourant(menus.get(100)); // Retourne au principal après la sélection/l'annulation
+                            } else {
+                                setMenuCourant(menus.get(targetId)); // Navigation vers le menu CRUD (900)
+                            }
                             break;
                         case "AIDE":
                             afficherAide();
@@ -106,13 +117,8 @@ public class ServiceUSSD {
                     // Exécute l'action CRUD basée sur le choix
                     gererActionCRUD(action);
                 }
-                // Si l'utilisateur est dans un sous-menu de forfaits (201 ou 202)
-                else if (menuCourant.getIdMenu() == 201 || menuCourant.getIdMenu() == 202) {
-                    // La logique d'activation est gérée dans la méthode d'affichage dynamique
-                    // On doit d'abord afficher les options avant de simuler l'achat
-                    afficherSousMenuDynamique(menuCourant.getIdMenu() == 201 ? "INTERNET" : "VOIX");
-                    setMenuCourant(menus.get(100)); // Retour au menu principal après achat
-                }
+                // *** BLOC SUPPRIMÉ : L'ancien bloc 201/202 ne doit plus exister ici. ***
+
             } else {
                 System.out.println("\nChoix invalide. Veuillez réessayer.");
             }
