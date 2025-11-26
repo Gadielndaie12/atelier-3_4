@@ -1,0 +1,26 @@
+[
+  {
+    "volumeData": "500 MB",
+    "idUnique": "I-200",
+    "nom": "500 MB (1 Jour)",
+    "prixUnites": 200,
+    "dureeValidite": "1 Jour",
+    "typeOffre": "INTERNET"
+  },
+  {
+    "volumeData": "2 GB",
+    "idUnique": "I-500",
+    "nom": "2 GB (7 Jours)",
+    "prixUnites": 500,
+    "dureeValidite": "7 Jours",
+    "typeOffre": "INTERNET"
+  },
+  {
+    "minutesAppel": 10,
+    "idUnique": "V-100",
+    "nom": "10 Min (1 Jour)",
+    "prixUnites": 100,
+    "dureeValidite": "1 Jour",
+    "typeOffre": "VOIX"
+  }
+]
